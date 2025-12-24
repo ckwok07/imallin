@@ -1,4 +1,5 @@
-from model.Card import Card
+from .Card import Card
+
 
 
 class Evaluator:

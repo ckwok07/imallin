@@ -1,6 +1,7 @@
-from model.Card import Card
-from model.Rank import Rank
-from model.Suit import Suit
+from .Card import Card
+from .Rank import Rank
+from .Suit import Suit
+
 import random
 
 class Deck:
