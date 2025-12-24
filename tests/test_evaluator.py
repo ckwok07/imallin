@@ -1,5 +1,10 @@
+from random import random
 from main.model.Card import Card
+from main.model.Deck import Deck
 from main.model.Evaluator import Evaluator
+
+random.seed(1)
+
 
 
 def test_high_card():

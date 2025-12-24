@@ -4,11 +4,6 @@ from .Card import Card
 
 class Evaluator:
     @staticmethod
-    def compare_hands(hand1: list[Card], hand2: list[Card]) -> int:
-
-        return 0
-    
-    @staticmethod
     def best_hand(cards: list[Card]) -> list[Card]:
         return []
     
@@ -138,3 +133,15 @@ class Evaluator:
         else:
             hand_class = 0
             return (hand_class, ranks[-1], ranks[-2], ranks[-3], ranks[-4], ranks[-5])
+
+    @staticmethod
+    def compare_hands(hand1: list[Card], hand2: list[Card]) -> int:
+        hand1Eval = Evaluator.mapper(hand1)
+        hand2Eval = Evaluator.mapper(hand2)
+
+        if hand1Eval > hand2Eval:
+            return 1 # hand 1 wins
+        elif hand1Eval < hand2Eval:
+            return -1 # hand 2 wins
+        else:
+            return 0 # tie
