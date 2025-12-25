@@ -90,24 +90,24 @@ def test_same_hand():
 
     assert Evaluator.compare_hands(hand1, hand2) == 0
 
-    def test_same_hand_suits():
-        hand1 = [
-            Card(2, Suit.DIAMONDS),
-            Card(2, Suit.HEARTS),
-            Card(8, Suit.CLUBS),
-            Card(8, Suit.SPADES),
-            Card(13, Suit.CLUBS),
-        ]
+def test_same_hand_suits():
+    hand1 = [
+        Card(2, Suit.DIAMONDS),
+        Card(2, Suit.HEARTS),
+        Card(8, Suit.CLUBS),
+        Card(8, Suit.SPADES),
+        Card(13, Suit.CLUBS),
+    ]
 
-        hand2 = [
-            Card(2, Suit.SPADES),
-            Card(2, Suit.HEARTS),
-            Card(8, Suit.CLUBS),
-            Card(8, Suit.HEARTS),
-            Card(13, Suit.CLUBS),
-        ]
+    hand2 = [
+        Card(2, Suit.SPADES),
+        Card(2, Suit.HEARTS),
+        Card(8, Suit.CLUBS),
+        Card(8, Suit.HEARTS),
+        Card(13, Suit.CLUBS),
+    ]
 
-        assert Evaluator.compare_hands(hand1, hand2) == 0
+    assert Evaluator.compare_hands(hand1, hand2) == 0
 
 def test_compare_hands_antisymmetric():
     h1 = [Card(14,0), Card(13,1), Card(11,2), Card(9,3), Card(2,0)]
