@@ -24,6 +24,8 @@ class Simulator:
         equity_sum = 0.0
 
         for trial in range(trials):
+            assert len(set((c.rank, c.suit) for c in hand + board)) == len(hand + board)
+            
             deck = Deck()
             deck.shuffle()
             deck.removeCards(hand + board)

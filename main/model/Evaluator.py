@@ -5,6 +5,8 @@ from itertools import combinations
 class Evaluator:
     @staticmethod
     def best_hand(cards: list[Card]) -> list[Card]:
+        assert len(cards) >= 5
+
         bestHand = None
         bestHandScore = None
 
@@ -20,6 +22,8 @@ class Evaluator:
     
     @staticmethod
     def mapper(hand: list[Card]) -> tuple[int, int, int, int, int, int]:
+        assert len(hand) == 5
+
         ranks = []
         suits = []
 
@@ -147,6 +151,8 @@ class Evaluator:
 
     @staticmethod
     def compare_hands(hand1: list[Card], hand2: list[Card]) -> int:
+        assert len(hand1) == 5
+        assert len(hand2) == 5
         hand1Eval = Evaluator.mapper(hand1)
         hand2Eval = Evaluator.mapper(hand2)
 
