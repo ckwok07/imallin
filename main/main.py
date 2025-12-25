@@ -7,6 +7,7 @@ from model.Rank import Rank
 def main() -> None:
     deck = Deck()
     deck.shuffle()
+    board = []
 
     #hand = deck.deal(2)
     hand = [Card(14,Suit.SPADES), Card(14, Suit.HEARTS)]
@@ -20,12 +21,10 @@ def main() -> None:
     for card in board:
         print(card.display())
 
-    for trials, winrate, tierate, equity in Simulator.simulate_equity(hand, board, 100_000):
+    for trials, equity in Simulator.simulate_equity(hand, board, 2, 100_000):
             if trials % 500 == 0:
                 print(
                     f"\rtrials:{trials:6d} | "
-                    f"win={winrate:.4f} "
-                    f"tie={tierate:.4f} "
                     f"equity={equity:.4f}",
                     end="",
                     flush=True

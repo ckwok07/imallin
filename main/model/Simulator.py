@@ -5,7 +5,13 @@ from .Deck import Deck
 
 class Simulator:
     @staticmethod
-    def simulate_equity(hand: list[Card], board: list[Card] | None = None, trials: int = 100000) -> Iterator[tuple[int, float, float, float]]:
+    def simulate_equity(hand: list[Card], 
+                        board: list[Card] | None = None,
+                        players: int = 2, 
+                        trials: int = 100000) -> Iterator[tuple[int, float, float, float]]:
+        assert 2 <= players <= 6
+        assert len(hand) == 2
+
         wins = 0
         ties = 0
 
@@ -15,27 +21,33 @@ class Simulator:
         missing_board = 5 - len(board)
         assert 0 <= missing_board <= 5
 
+        equity_sum = 0.0
+
         for trial in range(trials):
             deck = Deck()
             deck.shuffle()
             deck.removeCards(hand + board)
 
-            villain_hand = [deck.draw(), deck.draw()]
+            villains = []
+            for num in range(players - 1):
+                villains.append([deck.draw(), deck.draw()])
+
             rest_of_board = deck.deal(missing_board)
 
             full_board = board + rest_of_board
 
-            hero_best = Evaluator.best_hand(hand + full_board)
-            villain_best = Evaluator.best_hand(villain_hand + full_board)
+            hero_eval = Evaluator.mapper(Evaluator.best_hand(hand + full_board))
+            
+            villain_evals = []
+            for v in villains:
+                best = Evaluator.best_hand(v + full_board)
+                villain_evals.append(Evaluator.mapper(best))
 
-            result = Evaluator.compare_hands(hero_best, villain_best)
+            all_evals = [hero_eval] + villain_evals
+            best_eval = max(all_evals)
 
-            if result == 1:
-                wins += 1
-            elif result == 0:
-                ties += 1
+            if hero_eval == best_eval:
+                tied = sum(1 for e in all_evals if e == best_eval)
+                equity_sum += 1.0 / tied
 
-            winrate = wins/ (trial + 1)
-            tierate = ties/ (trial + 1)
-            equity = (wins + 0.5*ties) / (trial + 1)
-            yield trial + 1, winrate, tierate, equity
+            yield trial + 1, equity_sum / (trial + 1)
