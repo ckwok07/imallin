@@ -23,3 +23,10 @@ class Range:
             self.hands = Range.ALL_HANDS
         else:
             self.hands = hands
+
+    def is_blocked(hand: list[Card], known: list[Card]) -> bool:
+        for card1 in hand:
+            for card2 in known:
+                if card1.rank == card2.rank and card1.suit == card2.suit:
+                    return True
+        return False
