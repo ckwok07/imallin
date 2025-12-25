@@ -23,3 +23,4 @@ def test_straight():
                     Card(5, Suit.CLUBS)
                 ]
     assert Evaluator.mapper(hand) == Evaluator.mapper(expected_hand)
+    assert Evaluator.compare_hands(hand,expected_hand) == 0
