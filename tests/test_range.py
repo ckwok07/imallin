@@ -67,3 +67,5 @@ def test_sample_hand_blocked():
                 (card.rank == 14 and card.suit == Suit.SPADES.value) or
                 (card.rank == 13 and card.suit == Suit.HEARTS.value)
             )
+
+
