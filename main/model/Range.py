@@ -20,7 +20,7 @@ class Range:
     def __init__(self, hands: list[list[Card]] | None = None) -> None:
         if Range.ALL_HANDS is None:
             Range.ALL_HANDS = Range.generateHands()
-        if hands == None:
+        if hands is None:
             self.hands = Range.ALL_HANDS
         else:
             self.hands = hands
