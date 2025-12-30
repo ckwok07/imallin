@@ -10,10 +10,10 @@ def main() -> None:
     deck.shuffle()
     board = []
 
-    hand = deck.deal(2)
-    #hand = [Card(14,Suit.SPADES), Card(12, Suit.HEARTS)]
-    board = deck.deal(3)
-    #board = [Card(8,Suit.SPADES), Card(8,Suit.HEARTS), Card(8,Suit.DIAMONDS)]
+    #hand = deck.deal(2)
+    hand = [Card(14,Suit.SPADES), Card(11, Suit.SPADES)]
+    #board = deck.deal(3)
+    board = [Card(12,Suit.SPADES), Card(10,Suit.SPADES), Card(9,Suit.DIAMONDS)]
 
     print("hand:")
     for card in hand:
@@ -22,15 +22,15 @@ def main() -> None:
     for card in board:
         print(card.display())
     
-    # for trials, equity in Simulator.simulate_equity(hand, board, 6, 100000):
-    #     if trials % 500 == 0:
-    #         print(
-    #             f"\rtrials:{trials:6d} | "
-    #             f"equity={equity:.4f}",
-    #             end="",
-    #             flush=True
-    #         )
-    # print()
+    for trials, equity in Simulator.simulate_equity(hand, board, 2, 30000):
+        if trials % 500 == 0:
+            print(
+                f"\rtrials:{trials:6d} | "
+                f"equity={equity:.4f}",
+                end="",
+                flush=True
+            )
+    print()
 
 
     TT_plus = Range([
@@ -76,7 +76,7 @@ def main() -> None:
     ])
 
 
-    for trials, equity in Simulator.simulate_equity_in_range(hand, board, 2, [TT_plus], 5000):
+    for trials, equity in Simulator.simulate_equity_in_range(hand, board, 2, [TT_plus], 30000):
         if trials % 500 == 0:
             print(
                 f"\rtrials:{trials:6d} | "

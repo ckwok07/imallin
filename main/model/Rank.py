@@ -1,5 +1,6 @@
 from enum import Enum
 
+# a class to represent a card rank
 class Rank(Enum):
     TWO = 2
     THREE = 3
@@ -15,6 +16,7 @@ class Rank(Enum):
     KING = 13
     ACE = 14
 
+    # displays a rank
     def display(self) -> str:
         if self.value < 10:
             return str(self.value)
