@@ -4,11 +4,16 @@ from model.Card import Card
 from model.Suit import Suit
 from model.Rank import Rank
 from model.Range import Range
+from model.Handbuilder import Handbuilder
 
 def main() -> None:
     deck = Deck()
     deck.shuffle()
     board = []
+    TT = Handbuilder.pocket_pairs(10)
+    for hand in TT:
+        for card in hand:
+            print(card.display())
 
     #hand = deck.deal(2)
     hand = [Card(14,Suit.SPADES), Card(11, Suit.SPADES)]

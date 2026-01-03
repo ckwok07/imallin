@@ -15,3 +15,5 @@ class Card:
         rank_str = Rank(self.rank).display()
         suit_str = Suit(self.suit).display()
         return rank_str + suit_str
+    
+    
